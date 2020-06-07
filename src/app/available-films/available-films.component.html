@@ -1,0 +1,30 @@
+<div class="container">
+    <table class="table table-striped table-hover" *ngIf="availableFilms != null">
+        <thead>
+            <tr>
+                <th scope="col">View</th>
+                <th scope="col">Title</th>
+                <th scope="col">Category</th>
+                <th scope="col">Description</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Rental Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr
+                *ngFor="let availableFilm of availableFilms| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize ; index as i ">
+                <th><a routerLink="/film/{{availableFilm.id}}"><i class="fas fa-film"></i></a></th>
+                <th>{{availableFilm.title}}</th>
+                <th>{{availableFilm.category}}</th>
+                <th>{{availableFilm.description}}</th>
+                <th>{{availableFilm.rating}}</th>
+                <th>{{availableFilm.rentalDuration}}</th>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between p-2" *ngIf="availableFilms != null">
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="availableFilms.length"></ngb-pagination>
+    </div>
+</div>
